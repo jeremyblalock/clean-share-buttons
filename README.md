@@ -42,4 +42,4 @@ Share buttons are automatically styled using the stylesheet `share-buttons.css`,
 
 ## License
 
-The  is dual licensed (just like jQuery) under the MIT (MIT_LICENSE.txt) and GPL Version 2 (GPL_LICENSE.txt) licenses.
+This software is licensed under the MIT license, included in MIT-LICENSE.txt.
