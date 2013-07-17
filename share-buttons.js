@@ -30,24 +30,42 @@
         return 'http://54.243.13.39/?url=' + encodeURIComponent(url);
     }
 
+    function getDataUrl($el) {
+        var url = $el.data('url');
+        if (typeof url === 'undefined') {
+            url = window.location.href;
+        }
+        return url;
+    }
+
     function clickLinkWrapper(type) {
         if (!type in structures) {
             return false;
         }
         return function(e) {
+            var width = 350,
+                height = 250,
+                left = e.pageX - width / 2,
+                top = e.pageY,
+                url = getDataUrl($(this));
+            console.log("Clicked", type, "link");
+            window.open(getUrl(structures[type].shareUrl,
+                url), '_blank',
+                    'width=' + width + ',height=' + height + ',left=' + left +
+                    ',top=' + top);
             e.preventDefault();
         };
     }
 
     function addIndicator($el, type) {
         var structure = structures[type],
-            $indicator = $('<span class="share-count-indicator"></span>'),
-            url = $el.data('url');
-        $el.append($indicator);
+            $indicator = $('<span class="share-count-indicator"' +
+                'style="display: none"></span>'),
+            url = getDataUrl($el);
         $.ajax(proxyWrap(structure.countUrl + encodeURIComponent(url)))
             .done(function(result) {
                 $indicator.text(result[structure.param]);
-                $indicator.appendTo($el);
+                $indicator.appendTo($el).fadeIn();
             });
     }
 
@@ -55,7 +73,9 @@
         var $el = $(this),
             type = $el.data('type');
         $el.on('click', clickLinkWrapper(type));
-        $el.attr('href', '#');
+        $el.css({
+            cursor: 'pointer'
+        })
         addIndicator($el, type);
     });
 
