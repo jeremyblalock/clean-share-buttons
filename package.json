@@ -1,0 +1,10 @@
+{
+  "name": "clean-share-buttons",
+  "description": "jQuery script that makes it easy to dynamically create social media share buttons",
+  "author": "Jeremy Blalock",
+  "dependencies": {
+    "grunt": "~0.4",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-uglify": "~0.2.2"
+  }
+}
