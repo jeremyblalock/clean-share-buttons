@@ -36,7 +36,6 @@
         }
         return function(e) {
             e.preventDefault();
-            console.log('Clicked', type, 'link');
         };
     }
 
@@ -47,18 +46,12 @@
         $el.append($indicator);
         $.ajax(proxyWrap(structure.countUrl + encodeURIComponent(url)))
             .done(function(result) {
-                console.log('=====>', result, type + ':', structure.param, result[structure.param]);
                 $indicator.text(result[structure.param]);
                 $indicator.appendTo($el);
-            })
-            .fail(function(err) {
-                console.log('------->', err);
             });
     }
 
     $('a.share-button').livequery(function() {
-        console.log('Just added', $(this).size(),
-            'elements, the first of which is', $(this).get(0));
         var $el = $(this),
             type = $el.data('type');
         $el.on('click', clickLinkWrapper(type));
