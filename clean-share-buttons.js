@@ -26,6 +26,7 @@
         }
     }
 
+    /* Request URLs through a proxy to avoid CORS issues. */
     function proxyWrap(url) {
         return 'http://54.243.13.39/?url=' + encodeURIComponent(url);
     }
@@ -46,7 +47,7 @@
             var width = 350,
                 height = 250,
                 left = e.pageX - width / 2,
-                top = e.pageY,
+                top = e.pageY - $(window).scrollTop() - 50,
                 url = getDataUrl($(this));
             console.log("Clicked", type, "link");
             window.open(getUrl(structures[type].shareUrl,
@@ -64,8 +65,18 @@
             url = getDataUrl($el);
         $.ajax(proxyWrap(structure.countUrl + encodeURIComponent(url)))
             .done(function(result) {
-                $indicator.text(result[structure.param]);
+                var count = result[structure.param];
+                if (!count) {
+                    count = 0;
+                }
+                $indicator.text(count);
                 $indicator.appendTo($el).fadeIn();
+                $el.css({
+                    marginRight: ($indicator.width() +
+                        parseInt($indicator.css('padding-left'), 10) +
+                        parseInt($indicator.css('padding-right'), 10) +
+                        parseInt($indicator.css('margin-left'), 10) + 10)
+                });
             });
     }
 
