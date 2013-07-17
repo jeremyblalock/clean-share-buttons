@@ -10,7 +10,17 @@ module.exports = function(grunt) {
       build: {
         src: '<%= pkg.name %>.js',
         dest: '<%= pkg.name %>.min.js'
+      },
+      combined: {
+        src: 'build/<%= pkg.name %>-jquery.js',
+        dest: '<%= pkg.name %>-jquery.min.js'
       }
+    },
+    concat: {
+        combined: {
+            src: ['lib/jquery.min.js', 'jquery.livequery.js', '<%= pkg.name %>.js'],
+            dest: 'build/<%= pkg.name %>-jquery.js'
+        }
     },
     jshint: {
       // define the files to lint
@@ -33,7 +43,10 @@ module.exports = function(grunt) {
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
+  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-concat');
+
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'concat:combined', 'uglify']);
 
 };
