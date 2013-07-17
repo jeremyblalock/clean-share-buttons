@@ -10,16 +10,12 @@ module.exports = function(grunt) {
       build: {
         src: '<%= pkg.name %>.js',
         dest: '<%= pkg.name %>.min.js'
-      },
-      combined: {
-        src: 'build/<%= pkg.name %>-jquery.js',
-        dest: '<%= pkg.name %>-jquery.min.js'
       }
     },
     concat: {
         combined: {
-            src: ['lib/jquery.min.js', 'jquery.livequery.js', '<%= pkg.name %>.js'],
-            dest: 'build/<%= pkg.name %>-jquery.js'
+            src: ['lib/jquery.min.js', 'lib/jquery.livequery.js', '<%= pkg.name %>.js'],
+            dest: '<%= pkg.name %>-jquery.min.js'
         }
     },
     jshint: {
