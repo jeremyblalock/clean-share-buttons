@@ -26,6 +26,10 @@
         }
     }
 
+    function proxyWrap(url) {
+        return 'http://54.243.13.39/?url=' + encodeURIComponent(url);
+    }
+
     function clickLinkWrapper(type) {
         if (!type in structures) {
             return false;
@@ -41,10 +45,15 @@
             $indicator = $('<span class="share-count-indicator"></span>'),
             url = $el.data('url');
         $el.append($indicator);
-        $.ajax(structure.countUrl + encodeURIComponent(url)).done(function(result) {
-            $indicator.text(result[structure.param]);
-            $indicator.appendTo($el);
-        });
+        $.ajax(proxyWrap(structure.countUrl + encodeURIComponent(url)))
+            .done(function(result) {
+                console.log('=====>', result, type + ':', structure.param, result[structure.param]);
+                $indicator.text(result[structure.param]);
+                $indicator.appendTo($el);
+            })
+            .fail(function(err) {
+                console.log('------->', err);
+            });
     }
 
     $('a.share-button').livequery(function() {
