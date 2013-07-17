@@ -20,6 +20,10 @@ Alternately, if you'd prefer to specify a separate URL to share, you can specify
 
 	<a class='share-button' data-type='facebook' data-url='http://example.com/my-awesome-page/'>Share on Facebook</a>
 
+### Styling
+
+To use default styling, include clean-share-buttons.css. This adds styling for count-indicator as well as button.
+
 ## Features
 
 ### Available Vendors
@@ -42,6 +46,14 @@ Share buttons are automatically styled using the stylesheet `share-buttons.css`,
 ## Required Libraries
 
 Our share buttons require that you first load **jQuery** and **jQuery LiveQuery**. Those libraries are available for download [here](https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js) and [here](https://raw.github.com/brandonaaron/livequery/master/jquery.livequery.js) respectively. They are also included in the `test` directory.
+
+## Contributing
+
+### Building
+
+To build the project, install `grunt-cli`, run `npm install` to install necessary node modules. Then to lint/build:
+
+    $ grunt
 
 
 ## License
