@@ -75,7 +75,8 @@
                     marginRight: ($indicator.width() +
                         parseInt($indicator.css('padding-left'), 10) +
                         parseInt($indicator.css('padding-right'), 10) +
-                        parseInt($indicator.css('margin-left'), 10) + 30)
+                        parseInt($indicator.css('margin-left'), 10) + 15),
+                    marginLeft: 15
                 });
             });
     }
