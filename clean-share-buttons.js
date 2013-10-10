@@ -48,8 +48,8 @@
                 height = 250,
                 left = ($(window.top).width() - width) / 2,
                 top = $(window.top).height() / 2 - 100,
-                url = getDataUrl($(this));
-            console.log("Clicked", type, "link");
+                params = $(this).data('params'),
+                url = getDataUrl($(this)) + (params ? '&' + params : '');
             window.open(getUrl(structures[type].shareUrl,
                 url), '_blank',
                     'width=' + width + ',height=' + height + ',left=' + left +
