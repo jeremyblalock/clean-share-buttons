@@ -16,6 +16,10 @@ module.exports = function(grunt) {
         combined: {
             src: ['lib/jquery.min.js', 'lib/jquery.livequery.js', '<%= pkg.name %>.js'],
             dest: '<%= pkg.name %>-jquery.min.js'
+        },
+        livequery: {
+            src: ['lib/jquery.livequery.js', '<%= pkg.name %>.js'],
+            dest: '<%= pkg.name %>-livequery.min.js'
         }
     },
     jshint: {
@@ -43,6 +47,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'concat:combined', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'concat:combined', 'concat:livequery', 'uglify']);
 
 };

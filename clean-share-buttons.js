@@ -46,8 +46,8 @@
         return function(e) {
             var width = 350,
                 height = 250,
-                left = e.pageX - width / 2,
-                top = e.pageY - $(window).scrollTop() - 50,
+                left = ($(window.top).width() - width) / 2,
+                top = $(window.top).height() / 2 - 100,
                 url = getDataUrl($(this));
             console.log("Clicked", type, "link");
             window.open(getUrl(structures[type].shareUrl,
@@ -75,7 +75,7 @@
                     marginRight: ($indicator.width() +
                         parseInt($indicator.css('padding-left'), 10) +
                         parseInt($indicator.css('padding-right'), 10) +
-                        parseInt($indicator.css('margin-left'), 10) + 10)
+                        parseInt($indicator.css('margin-left'), 10) + 30)
                 });
             });
     }
